@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>HelloJSP</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+  <filter>
+  	<filter-name>SetCharEncoding</filter-name>
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  		<init-param>
+  			<param-name>encoding</param-name>
+  			<param-value>utf-8</param-value>
+  		</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>SetCharEncoding</filter-name>
+  	
+	<!-- root(/) 밑에 있는 모든 페이지 -->
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+<!--   XML -->
+<!-- context-param => 서버에 만들어 놓은 변수 -->
+<!-- ORACLE 설정값 -->
+<context-param>
+	<param-name>OracleDriver</param-name>
+	<param-value>oracle.jdbc.OracleDriver</param-value>
+</context-param>
+
+<context-param>
+	<param-name>OracleURL</param-name>
+	<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+</context-param>
+
+<context-param>
+	<param-name>OracleId</param-name>
+	<param-value>musthave</param-value>
+</context-param>
+
+<context-param>
+	<param-name>OraclePwd</param-name>
+	<param-value>1234</param-value>
+</context-param>
+
+<!-- ========================================== -->
+  <context-param> 
+	  	<param-name>POSTS_PER_PAGE</param-name>
+		<param-value>10</param-value>  
+  </context-param>
+  <context-param>
+  	<param-name>PAGES_PER_BLOCK</param-name>
+	<param-value>5</param-value>  
+  </context-param>
+<!-- =========================================== -->
+  <context-param>
+  	<param-name>INIT_PARAM</param-name>
+	<param-value>web.xml에 저장한 초기화 매개변수</param-value>  
+  </context-param>
+  <context-param>
+  	<param-name>user_name</param-name>
+	<param-value>hong</param-value>  
+  </context-param>
+  
+<!--   Error page 만들기 -->
+  	<error-page>
+  		<error-code>404</error-code>
+  		<location>/02ImplicitObject/Exception.jsp</location>
+  	</error-page>
+  	
+  	<error-page>
+  		<error-code>405</error-code>
+  		<location>/02ImplicitObject/Exception.jsp</location>
+  	</error-page>
+  	
+  	<error-page>
+  		<error-code>500</error-code>
+  		<location>/02ImplicitObject/Exception.jsp</location>
+  	</error-page>
+  	
+<!--   	===================================== -->
+  	
+  	<servlet>
+<!--   	이름은 내가 지정 -->
+  		<servlet-name>HelloServlet</servlet-name>
+<!--   	이름과 연결할 클래스 지정 -->
+  		<servlet-class>servlert.HelloServlet</servlet-class>
+  	</servlet>
+  	
+<!--   	어노테이션으로 하면 배열로 처리 / web.xml에서 여러개 주소 지정하려면 mapping 여러개 -->
+  	<servlet-mapping>
+  		<servlet-name>HelloServlet</servlet-name>
+<!--   주소 만들기 -->
+  		<url-pattern>/hi</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+  		<servlet-name>HelloServlet</servlet-name>
+<!--   주소 만들기 -->
+  		<url-pattern>/hello2</url-pattern>
+  	</servlet-mapping>
+
+<!-- ========================================== -->
+	<servlet>
+  		<servlet-name>MemberAuth</servlet-name>
+  		<servlet-class>servlet.MemberAuth</servlet-class>
+  		<init-param>
+  			<param-name>admin_id</param-name>
+  			<param-value>nakja</param-value>
+  		</init-param>
+  	</servlet>
+  	
+  	<servlet-mapping>
+  		<servlet-name>MemberAuth</servlet-name>
+  		<url-pattern>/13Servlet/MemberAuth.mvc</url-pattern>
+  	</servlet-mapping>
+<!-- =========================================== -->
+  
+  
+<!--   목록보기와 글쓰기는 web.xml 매핑 처리  -->
+  <!-- ==========MVCBoard========================= -->
+  	<servlet>
+  		<servlet-name>ListController</servlet-name>
+  		<servlet-class>model2.mvcboard.ListController</servlet-class>
+  	</servlet>
+  	
+  	<servlet-mapping>
+  		<servlet-name>ListController</servlet-name>
+  		<url-pattern>/mvcboard/list.do</url-pattern>
+  	</servlet-mapping>
+  	<!-- =========================================== -->
+  	<servlet>
+  		<servlet-name>WriteController</servlet-name>
+  		<servlet-class>model2.mvcboard.WriteController</servlet-class>
+  	</servlet>
+  	
+  	<servlet-mapping>
+  		<servlet-name>WriteController</servlet-name>
+  		<url-pattern>/mvcboard/write.do</url-pattern>
+  	</servlet-mapping>
+  	<!-- =========================================== -->
+  	<context-param>
+	<param-name>maxPostSize</param-name>
+	<param-value>1024000000</param-value>
+</context-param>
+<!-- =========================================== -->
+  	
+  	
+  	
+  	
+  	
+  	
+ 
+</web-app>
+
+
+
+
+
