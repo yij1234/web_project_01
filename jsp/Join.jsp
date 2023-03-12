@@ -245,7 +245,7 @@
 				<td width="40%"><input class="text" type="text" id="user_id"
 					name="user_id" placeholder="아이디 중복체크를 눌러주세요."> <input
 					class="button" type="button" id="idChkBtn" value="중복체크"
-					onclick="idCheck()">
+					onclick="idCheck()"> 
 					<hr></td>
 
 				<td width="40%" colspan="2"></td>
